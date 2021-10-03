@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "en" }}">
+<html lang="{{ .Lang }}" class="min-vh-100">
   <head>
     {{ partial "head/head.html" . }}
   </head>
   {{- partial "head/body-class.html" . -}}
-  <body class="{{ delimit (.Scratch.Get "class") " " }}">
+  {{- $bodyClass := delimit (.Scratch.Get "class") " " -}}
+  <body class="{{ $bodyClass }} d-flex flex-column min-vh-100">
     {{ if and .IsHome .Site.Params.alert }}
       {{ partial "header/alert.html" . }}
     {{ end }}
     {{ partial "header/header.html" . }}
-    <main>
+    <main class="mb-auto">
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "sidebar-footer" . }}{{ end }}
