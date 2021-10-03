@@ -1,5 +1,13 @@
-<footer class="footer text-muted">
-  <div class="container">
-    <p class="m-0 text-center">{{ .Site.Params.footer | safeHTML }}</p>
-  </div>
-</footer>
+<div class="container-fluid bg-dark py-3">
+  <span class="text-light mb-0">
+    {{-  with .Site.Params.footer | markdownify -}}
+    {{- . -}}
+    {{- else -}}
+    &copy; <span id="year"><noscript>{{ now.Format "2006"}}</noscript></span> {{ .Site.Copyright | default .Site.Title }}
+    {{- end -}}
+</span>
+
+</div>
+<script>
+  document.getElementById("year").innerHTML = new Date().getFullYear();
+</script>

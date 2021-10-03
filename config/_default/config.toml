@@ -1,4 +1,6 @@
 baseurl = "https://hugo-shoelaces.netlify.app"
+# override .Site.Title for copyright notice
+# copyright = "Custom Business Name"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
