@@ -1,7 +1,6 @@
 # Meta Data for SEO
 
-## Homepage
-title = "Hyas"
+## Page Title
 titleSeparator = "-"
 # only used on home page
 titleAddition = "Modern Hugo Starter"
