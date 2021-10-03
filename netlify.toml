@@ -5,6 +5,7 @@
 [build.environment]
   NODE_VERSION = "16.3.0"
   NPM_VERSION = "7.16.0"
+  NPM_FLAGS = "--production"
 
 [context.production]
   command = "npm run build"
