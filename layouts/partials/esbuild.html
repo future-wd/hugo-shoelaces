@@ -1,0 +1,25 @@
+{{- /* ESBUILD.HTML - Build javascript modules with esbuild
+    * Usage:  {{ partial "esbuild" (dict "src" "js/file.js" "targetPath" "js/main.js" "load" "(defer), async or "" " "transpile" (false) or true ) }}  
+    * Parameters:
+    * src - javascript file to build, relative to assets folder
+    * targetPath - output path including file name, relative to site root. Can be left unset. 
+    * load - default "defer" can be set to "async" or " " . To pre load scripts, call partial in <head> and use defer (default)
+    * transpile - default false, set to true to transpile code down to es5 with babel 
+    */ -}}
+{{- /*  supresses errors if no or error .src is supplied */ -}}
+{{- with $src := resources.Get .src -}}
+{{- /* for develop environment e.g. hugo server */ -}}
+{{ if eq (hugo.Environment) "development" -}}
+  {{ $src = $src | js.Build (dict "targetPath" $.targetPath "sourceMap" "inline") | fingerprint "sha512" -}}
+{{- /* if .transpile true */ -}}
+  {{ else if $.transpile -}}
+  {{ $src = $src  | js.Build  (dict "targetPath" $.targetPath) | babel ("noComments" true "minified" true "compact" true "config" "config/babel.config.js") | fingerprint "sha512" -}}
+{{ else -}}
+  {{ $src = $src  | js.Build (dict "targetPath" $.targetPath "minify" true ) | fingerprint "sha512" -}}
+{{ end -}}
+<script {{ $.load | default "defer" | safeHTMLAttr }}
+  type="text/javascript"
+  src="{{- $src.RelPermalink -}}"
+  integrity="{{- $src.Data.Integrity -}}">
+</script>
+{{- end -}}

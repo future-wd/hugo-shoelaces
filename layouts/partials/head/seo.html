@@ -11,7 +11,7 @@
 {{ end -}}
 
 {{ if .IsHome -}}
-  <title>{{ .Site.Params.title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.titleAddition }}</title>
+  <title>{{ .Site.Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.titleAddition }}</title>
 {{ else -}}
   <title>{{ .Title }} {{ .Site.Params.titleSeparator }} {{ .Site.Params.title }}</title>
 {{ end -}}
@@ -33,12 +33,11 @@
 {{ else  -}}
   <link rel="canonical" href="{{ .Permalink }}">
 {{ end -}}
-
-{{ partial "head/opengraph.html" . }}
-{{ partial "head/twitter_cards.html" . }}
-
+{{- /* partial "head/opengraph.html" . }}
+{{ partial "head/twitter_cards.html" . */ -}}
+{{ template "_internal/twitter_cards.html" . -}}
+{{ template "_internal/opengraph.html" . -}}
 {{ range .AlternativeOutputFormats -}}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
-
 {{ partial "head/structured-data.html" . }}

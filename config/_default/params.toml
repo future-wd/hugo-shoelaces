@@ -1,9 +1,10 @@
 # Meta Data for SEO
 
-## Homepage
-title = "Hyas"
+## Page Title
 titleSeparator = "-"
+# only used on home page
 titleAddition = "Modern Hugo Starter"
+# fall back description if a page does not have a description. Good to use for home page
 description = "Hyas is a Hugo starter helping you build modern websites that are secure, fast, and SEO-ready — by default."
 
 ## Open Graph
@@ -45,8 +46,8 @@ portraitPhotoWidths = [800, 700, 600, 500]
 lqipWidth = "20x"
 smallLimit = "300"
 
-# Footer
-footer = "Powered by <a href=\"https://www.netlify.com/\">Netlify</a>, <a href=\"https://gohugo.io/\">Hugo</a>, and <a href=\"https://gethyas.com/\">Hyas</a>"
+# Footer - override default copyright message
+# footer = "Custom Footer Text"
 
 # Feed
 copyRight = "Copyright (c) 2020-2021 Henk Verlinde"
