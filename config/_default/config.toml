@@ -1,4 +1,4 @@
-baseurl = "https://hyas.netlify.app/"
+baseurl = "https://hugo-shoelaces.netlify.app"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
