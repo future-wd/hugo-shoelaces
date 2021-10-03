@@ -18,22 +18,22 @@ twitterCreator: "@henkverlinde"
 
 ## JSON-LD
 # schemaType: "Person"
-schemaType: "Organization"
-schemaName: "Hyas"
-schemaAuthor: "Henk Verlinde"
-schemaAuthorTwitter: "https://twitter.com/henkverlinde"
-schemaAuthorLinkedIn: "https://www.linkedin.com/in/henkverlinde/"
-schemaAuthorGitHub: "https://github.com/h-enk"
-schemaLocale: "en-US"
-schemaLogo: "logo-hyas.png"
-schemaLogoWidth: 512
-schemaLogoHeight: 512
-schemaImage: "hyas.png"
-schemaImageWidth: 1280
-schemaImageHeight: 640
-schemaTwitter: "https://twitter.com/gethyas"
-schemaLinkedIn: ""
-schemaGitHub: "https://github.com/h-enk/hyas"
+# schemaType: "Organization"
+# schemaName: "Hyas"
+# schemaAuthor: "Henk Verlinde"
+# schemaAuthorTwitter: "https://twitter.com/henkverlinde"
+# schemaAuthorLinkedIn: "https://www.linkedin.com/in/henkverlinde/"
+# schemaAuthorGitHub: "https://github.com/h-enk"
+# schemaLocale: "en-US"
+# schemaLogo: "logo-hyas.png"
+# schemaLogoWidth: 512
+# schemaLogoHeight: 512
+# schemaImage: "hyas.png"
+# schemaImageWidth: 1280
+# schemaImageHeight: 640
+# schemaTwitter: "https://twitter.com/gethyas"
+# schemaLinkedIn: ""
+# schemaGitHub: "https://github.com/h-enk/hyas"
 
 ## Chrome Browser
 themeColor: "#fff"
@@ -58,20 +58,76 @@ alertText: "Deliver web projects 10x faster. <a class=\"alert-link\" href=\"http
 
 social:
   twitter:
-    user: "@handle"
-    url: "http://www.twitter.com/user"
-    icon: "icons/bootstrap/twitter"
-    disable: false
+    # account is for twitter cards, include @
+    account: "@handle"
+    url: http://www.twitter.com/user
+    icon: icons/bootstrap/twitter
   facebook:
-    url: "http://www.facebook.com/user"
-    icon: "icons/bootstrap/facebook"
+    url: http://www.facebook.com/user
+    icon: icons/bootstrap/facebook
     # Facebook Page Admin ID for Domain Insights
-    facebook_admin: ""
-    disable: false
+    facebook_admin: 
   github:
-    user: "@handle"
-    url: "http://www.twitter.com/user"
+    url: "http://www.github.com/user"
     icon: "icons/bootstrap/github"
     disable: false
+# https://schema.org/Organization
+## JSON-LD
+schemaType: "Organization"
+  # schemaType: "Person"
+schema:
+  # https://schema.org/PostalAddress
+  address:
+  # first record is for schema
+    streetAddress: 48 Pirrama Rd
+    addressLocality: Pyrmont
+    addressRegion: NSW
+    postalCode: 2009
+    addressCountry: Australia
+    # hasMap
+    url: https://goo.gl/maps/2bHxJ3bfhtHtnx2b9
+    geo: #coordinates 
+    icon: icons/bootstrap/geo-alt
+    disable: false
+  # postal address is just for contact details display
+  # servicePostalAddress:
+  #   postOfficeBoxNumber:
+  #   addressLocality: Pyrmont
+  #   addressRegion: NSW
+  #   postalCode: 2009
+  #   addressCountry: Australia
+  openingHours:
+  - dayOfWeek: Monday
+    opens: "09:00:00"
+    closes: "17:00:00"
+  - dayOfWeek: Tuesday
+    opens: "09:00:00"
+    closes: "17:00:00"
+  telephone:
+  # first record appears in schema data
+  - text:
+    full:
+    icon: icons/bootstrap/phone
+    disable: false
+  # mobile
+  - text:
+    url:
+    icon: icons/bootstrap/telephone
+    disable: false
+  email: 
+  - text:
+    url: icons/bootstrap/envelope
+    icon:
+    disable: false
+# only for contact details display
+extraItem:
+  - text: Help Desk
+    url:
+    icon:
+    disable: true
 
-social1: test
+
+# founder:
+# foundingDate:
+# foundingLocation:
+# logo

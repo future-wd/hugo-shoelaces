@@ -1,5 +1,5 @@
 {{- /*
-{{ partial "components/social-links.html" (dict "class" "me-2 mb-2 text-primary" "size" "16px" "fontSize" "fs-3" "em" 1) }}
+{{ partial "components/social-links.html" (dict "class" "me-2 mb-2 text-primary" "fontClass" "fs-3" "em" 1) }}
 # config.yaml
 params:
   social:
@@ -9,9 +9,9 @@ params:
       icon: icons/bootstrap/facebook
 */ -}}
 {{- range $key, $value := site.Params.social -}}
-{{ if and (ne $value.disable true) $value.icon }}
-<a role="button" href="{{ $value.url }}" title="{{ humanize $key }}" class=" d-inline-block" target="_blank" rel="noopener">
-  <span class="">{{ partial "svg-font.html" (dict "svg" $value.icon "block" true "em" 1 ) }}</span>
+{{- if and (ne $value.disable true) $value.icon -}}
+<a role="button" href="{{ $value.url }}" title="{{ humanize $key }}" class="{{ $.class }} d-inline-block" target="_blank" rel="noopener">
+  <span class="{{ $.fontClass }}">{{ partial "svg-font.html" (dict "svg" $value.icon "block" true "em" $.em ) }}</span>
 </a>
 {{ end }}
 {{ end }}
