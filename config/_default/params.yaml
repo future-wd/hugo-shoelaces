@@ -64,12 +64,14 @@ social:
     disable: false
   facebook:
     url: "http://www.facebook.com/user"
-    icon: "icon/bootstrap/facebook"
+    icon: "icons/bootstrap/facebook"
     # Facebook Page Admin ID for Domain Insights
     facebook_admin: ""
     disable: false
   github:
     user: "@handle"
     url: "http://www.twitter.com/user"
-    icon: "icons/bootstrap/twitter"
+    icon: "icons/bootstrap/github"
     disable: false
+
+social1: test
