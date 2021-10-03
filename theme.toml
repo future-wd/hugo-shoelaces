@@ -1,12 +1,12 @@
-name = "Hyas"
+name = "Shoelaces"
 license = "MIT"
-licenselink = "https://github.com/h-enk/hyas/blob/master/LICENSE"
+licenselink = "https://github.com/future-wd/shoelaces/blob/master/LICENSE"
 description = "Hugo starter helping you build modern websites that are secure, fast, and SEO-ready — by default."
-homepage = "https://gethyas.com/"
-tags = ["landing page", "blog", "minimal", "modern", "customizable", "bootstrap"]
+homepage = "https://github.com/future-wd/shoelaceshttps://github.com/future-wd/shoelaces"
+tags = ["landing page", "blog", "minimal", "modern", "customizable", "bootstrap", "bootstrap 5"]
 features = ["security aware", "fast by default", "seo-ready", "development tools", "bootstrap framework", "netlify-ready"]
 min_version = "0.75.0"
 
 [author]
-  name = "Henk Verlinde"
-  homepage = "https://henkverlinde.com/"
+  name = "Sean Emerson"
+  homepage = "https://www.powerfulwebdesign.com.au/"
