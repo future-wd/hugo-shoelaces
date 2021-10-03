@@ -7,4 +7,4 @@ import { listen } from 'quicklink/dist/quicklink.mjs';
 listen();
 
 // lazy sizes for image loading
-import 'lazysizes';
+// import 'lazysizes';
