@@ -75,7 +75,7 @@ social:
 ## JSON-LD
 schemaType: "Organization"
   # schemaType: "Person"
-schema:
+contact:
   # https://schema.org/PostalAddress
   address:
   # first record is for schema
@@ -97,31 +97,32 @@ schema:
   #   postalCode: 2009
   #   addressCountry: Australia
   openingHours:
-  - dayOfWeek: Monday
+    dayOfWeek: Monday
     opens: "09:00:00"
     closes: "17:00:00"
-  - dayOfWeek: Tuesday
-    opens: "09:00:00"
-    closes: "17:00:00"
+    icon: icons/bootstrap/clock
+  # - dayOfWeek: Tuesday
+  #   opens: "09:00:00"
+  #   closes: "17:00:00"
   telephone:
   # first record appears in schema data
-  - text:
-    full:
+    text: (02) 8004 3293
+    url: "tel:+61280043293"
     icon: icons/bootstrap/phone
     disable: false
   # mobile
-  - text:
-    url:
-    icon: icons/bootstrap/telephone
-    disable: false
+  # - text:
+  #   url:
+  #   icon: icons/bootstrap/telephone
+  #   disable: false
   email: 
-  - text:
-    url: icons/bootstrap/envelope
-    icon:
+    text: test@domain.com
+    url: "mailto:test@domain.com"
+    icon: icons/bootstrap/envelope
     disable: false
 # only for contact details display
 extraItem:
-  - text: Help Desk
+    text: Help Desk
     url:
     icon:
     disable: true

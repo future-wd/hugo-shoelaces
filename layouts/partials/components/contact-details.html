@@ -1,0 +1,26 @@
+<div class="c-contact-details">
+  {{ range $key, $value := site.Params.contact }}
+    {{ if ne $value.diable true }}
+    {{ if reflect.IsSlice $value }}
+    {{ range $key, $value := $value }}
+    {{ end }}
+    {{ end }}
+      <div class="d-flex flex-row align-middle">
+        <div class="d-flex align-items-center">
+          <div class="fs-4 text-primary me-2 my-2">
+          {{ with $value.icon }}
+          {{ partial "svg-font" (dict "svg" . "block" true) }} 
+          {{ end }}
+          </div>
+        </div>
+        <div class=" d-flex align-items-center">
+          {{- with $value.url -}}
+          <a class="text-break text-decoration-none link-secondary" href="{{- . | safeURL -}}" 
+          {{- if $value.newTab -}} target="_blank" rel="noopener"{{- end -}}>{{- end -}}
+          {{- $value.text | markdownify -}}{{- if $value.url -}}</a>{{- end -}}
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
+
