@@ -24,19 +24,22 @@
     "hugo-version": "exec-bin node_modules/.bin/hugo/hugo version",
     "postinstall": "hugo-installer --version otherDependencies.hugo --extended --destination node_modules/.bin/hugo",
     "release": "standard-version",
-    "release:dry-run": "standard-version --dry-run"
+    "release:dry-run": "standard-version --dry-run",
+    "npm-check": "npx npm-check -u"
   },
   "devDependencies": {
     "markdownlint-cli": "^0.28",
     "eslint": "^7.32",
     "stylelint": "^13.13",
-    "stylelint-config-standard": "^22.0"
+    "stylelint-config-standard": "^22.0",
+    "standard-version": "^9.3.1",
+    "npm-check": "^5.9.2"
   },
   "otherDependencies": {
     "hugo": "0.88.1"
   },
   "dependencies": {
-    "standard-version": "^9.3.1",
+    
     "@babel/cli": "^7.15",
     "@babel/core": "^7.15",
     "@babel/preset-env": "^7.15",
@@ -46,7 +49,6 @@
     "bootstrap": "^5.1",
     "exec-bin": "^1.0.0",
     "hugo-installer": "^3.1",
-    "lazysizes": "^5.3",
     "postcss": "^8.3",
     "postcss-cli": "^8.3",
     "purgecss-whitelister": "^2.4",
