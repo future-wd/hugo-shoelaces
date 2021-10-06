@@ -1,10 +1,10 @@
 {{- with $src := resources.Get . -}}
 {{ if eq (hugo.Environment) "development" -}}
-  {{ $options := (dict "targetPath" "main.css" "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
-  {{ $src = $src | toCSS $options | resources.Fingerprint "sha512" -}}
+  {{ $options := (dict "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
+  {{ $src = $src | toCSS $options | resources.Fingerprint -}}
 {{ else -}}
-  {{ $options := (dict "targetPath" "main.css" "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-  {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint "sha512" -}}
+  {{ $options := (dict "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
+  {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint -}}
 {{ end -}}
 <link rel="stylesheet" href="{{ $src.Permalink | relURL }}" integrity="{{ $src.Data.Integrity }}" crossorigin="anonymous">
 {{- end -}}
