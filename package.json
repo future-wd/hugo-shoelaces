@@ -48,7 +48,7 @@
     "exec-bin": "^1.0.0",
     "hugo-installer": "^3.1",
     "postcss": "^8.3.9",
-    "postcss-cli": "^8.3",
+    "postcss-cli": "^9.0.1",
     "purgecss-whitelister": "^2.4",
     "quicklink": "^2.2.0",
     "shx": "^0.3.3"
