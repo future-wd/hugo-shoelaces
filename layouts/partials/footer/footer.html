@@ -1,11 +1,19 @@
-<div class="container-fluid bg-dark py-3">
-  <span class="text-light mb-0">
-    {{-  with .Site.Params.footer | markdownify -}}
-    {{- . -}}
-    {{- else -}}
-    &copy; <span id="year"><noscript>{{ now.Format "2006"}}</noscript></span> {{ .Site.Copyright | default .Site.Title }}
-    {{- end -}}
-</span>
+<div class="container-fluid bg-dark py-2">
+  <div class="row">
+    <div class="col d-flex">
+      <span class="text-light mb-0">
+        {{-  with .Site.Params.footer | markdownify -}}
+        {{- . -}}
+        {{- else -}}
+        &copy; <span id="year"><noscript>{{ now.Format "2006"}}</noscript></span> {{ .Site.Copyright | default .Site.Title }}
+        {{- end -}}
+      </span>
+      <span class="ms-auto">
+        {{ partial "components/menu-social" (dict "fontClass" "text-white fs-3" "class" "me-2") }}
+      </span>
+    </div>
+  </div>
+  
 
 </div>
 <script>

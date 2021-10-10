@@ -1,0 +1,25 @@
+{{- /*
+{{ partial "components/social-links.html" (dict "class" "me-2 mb-2 text-primary" "fontClass" "fs-3" "em" 1) }}
+# config.yaml
+params:
+  social:
+    facebook:
+      disable: false
+      url: http://www.facebook.com/user
+      icon: icons/bootstrap/facebook
+*/ -}}
+{{ $em := "" }}
+{{ $fontClass := "" }}
+{{ $class := "" }}
+{{ if reflect.IsMap . }}
+{{ $em = .em }}
+{{ $fontClass = .fontClass }}
+{{ $class = .class }}
+{{ end }}
+{{- range $key, $value := site.Params.social -}}
+{{- if and (ne $value.disable true) $value.icon -}}
+<a role="button" href="{{ $value.url }}" title="{{ $value.title | default (humanize $key) }}" class="{{ $class }} d-inline-block" target="_blank" rel="noopener">
+  <span class="{{ $fontClass }}">{{ partial "svg-font.html" (dict "svg" $value.icon "block" true "em" $em ) }}</span>
+</a>
+{{ end }}
+{{ end }}
