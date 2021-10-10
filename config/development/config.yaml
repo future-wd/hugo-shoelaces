@@ -1,0 +1,4 @@
+module:
+  replacements: "github.com/future-wd/hugo-image -> ../../../future-wd/hugo-image, github.com/future-wd/hugo-svg-font -> ../../../future-wd/hugo-svg-font"
+
+

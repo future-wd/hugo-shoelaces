@@ -79,7 +79,9 @@ contact:
   # https://schema.org/PostalAddress
   address:
   # first record is for schema
-  - streetAddress: 48 Pirrama Rd
+  - name: Address
+    streetAddress: 
+    - 48 Pirrama Rd
     addressLocality: Pyrmont
     addressRegion: NSW
     postalCode: 2009
@@ -96,17 +98,21 @@ contact:
   #   addressRegion: NSW
   #   postalCode: 2009
   #   addressCountry: Australia
+
   openingHours:
-  - dayOfWeek: Monday
-    opens: "09:00:00"
-    closes: "17:00:00"
+  - name: Opening Hours
     icon: icons/bootstrap/clock
-  - dayOfWeek: Tuesday
-    opens: "09:00:00"
-    closes: "17:00:00"
+    hours:
+    - dayOfWeek: Monday
+      opens: "09:00:00"
+      closes: "17:00:00"
+    - dayOfWeek: Tuesday
+      opens: "09:00:00"
+      closes: "17:00:00"
   telephone:
   # first record appears in schema data
-  - text: (02) 8004 3293
+  - name: Phone
+    text: (02) 8004 3293
     url: "tel:+61280043293"
     icon: icons/bootstrap/phone
     disable: false
@@ -116,15 +122,17 @@ contact:
   #   icon: icons/bootstrap/telephone
   #   disable: false
   email: 
-  - text: test@domain.com
+  - name: Email
+    text: test@domain.com
     url: "mailto:test@domain.com"
     icon: icons/bootstrap/envelope
     disable: false
 # only for contact details display
-extraItem:
-  - text: Help Desk
-    url:
-    icon:
+  extraItem:
+  - name: Help Desk
+    text: Help Desk
+    url: helpdesk.com
+    icon: 
     disable: true
 
 
