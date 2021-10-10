@@ -49,9 +49,6 @@ smallLimit: "300"
 # Footer - override default copyright message
 # footer: "Custom Footer Text"
 
-# Feed
-copyRight: "Copyright (c) 2020-2021 Henk Verlinde"
-
 # Alert
 alert: false
 alertText: "Deliver web projects 10x faster. <a class=\"alert-link\" href=\"https://www.netlify.com/whitepaper/\" target=\"_blank\" rel=\"noopener\">Get the free enterprise paper →</a>"
