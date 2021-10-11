@@ -1,9 +1,6 @@
 {
   "description": "Hugo starter theme for building modern websites with bootstrap that are secure, fast, and SEO-ready — by default.",
   "version": "1.5.2",
-  "browserslist": [
-    "defaults"
-  ],
   "repository": "https://github.com/future-wd/hugo-shoelaces",
   "license": "MIT",
   "publishConfig": {
