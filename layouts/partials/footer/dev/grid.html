@@ -2,73 +2,112 @@
 <style>
   .dev-grid {
     position: fixed;
-    bottom: 20px;
+    bottom: 0;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    z-index: 2000;
-    min-width: 3400px;
-    max-width: 5000px;
-  }
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
+    width: 5000px;
+    height: 32px;
     transition: 0.5s;
-    padding-top: 60px;
   }
 
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+  .dev-grid table {
+    height: 100%;
   }
 
-  .sidenav a:hover {
-    color: #f1f1f1;
+  .dev-grid.is-collapsed {
+    width: 32px;
+    color: rgba(0, 0, 0, 0) !important;
   }
 
-  .btn-close {
-    position: relative;
-    font-size: 3rem;
-    border-width: 3px;
-    border-color: black;
-    padding: 3px;
-    margin: 5px;
+  .dev-grid.is-collapsed span {
+    display: none;
+  }
+
+  .close,
+  .open {
+    position: fixed;
+    bottom: 0;
+    width: 32px;
+    height: 32px;
+    transition: 0.5s;
+  }
+
+  .close {
+    right: 0;
+    opacity: 0.6;
+  }
+
+  .open {
+    left: 0;
+  }
+
+  .close:hover {
+    opacity: 1;
+  }
+
+  .close::before,
+  .close::after {
+    position: absolute;
+    right: 16px;
+    content: "";
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+
+  .close::before {
+    transform: rotate(45deg);
+  }
+
+  .close::after {
+    transform: rotate(-45deg);
+  }
+
+  .close.is-hidden,
+  .open.is-hidden {
+    display: none;
+  }
+
+  .open::before {
+    position: absolute;
+    top: 7px;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-right: 2px solid rgba(51, 51, 51, 0.6);
+    border-top: 2px solid rgba(51, 51, 51, 0.6);
+    transform: rotate(45deg);
+  }
+
+  .open:hover::before {
+    border-right: 2px solid rgba(51, 51, 51, 1);
+    border-top: 2px solid rgba(51, 51, 51, 1);
   }
 </style>
 
 
-<div id="js-devGrid" class="dev-grid container-fluid text-dark text-start" 
-style="position: fixed; bottom: 20px; margin: 0; padding: 0; overflow: hidden; z-index: 2000; width: 5000px;">
+<div id="js-devGrid" class="dev-grid container-fluid text-dark text-start is-collapsed">
+
   <table style="align-items: flex-start;">
     <tr>
-      <th style="width: 576px; background: var(--bs-primary);">
-        <button id="js-close" class="btn-close">&times;</button>
-        XS &lt; 576px (Primary)
-      </th>
+      <th style="width: 576px; background: var(--bs-primary);">XS &lt; 576px (Primary)</th>
       <th style="width: 192px; background: var(--bs-secondary);">SM &#8805; 576px (Secondary)</th>
       <th style="width: 224px; background: var(--bs-success);">MD &#8805; 768px (Success)</th>
       <th style="width: 208px; background: var(--bs-danger);">LG &#8805; 992px (Danger)</th>
       <th style="width: 200px; background: var(--bs-warning);">XL &#8805; 1200px (Warning)</th>
       <th style="width: 2000px; background: var(--bs-info);">XXL &gt; 1400px (Info)</th>
     </tr>
-
   </table>
+  <a href="#" class="open" id="js-open"></a>
+  <a href="#" class="close is-hidden" id="js-close"></a>
 </div>
 <script>
-  var toggle = true;
+  {
+    {/*  var toggle = true;
   function toggleFunction(){
-    toggle ? functionA() : functionB();
+    toggle ? closeGrid() : openGrid();
     toggle = !toggle;
   }
   const close = document.getElementById('js-close');
@@ -80,6 +119,25 @@ style="position: fixed; bottom: 20px; margin: 0; padding: 0; overflow: hidden; z
 
   function closeGrid() {
     document.getElementById("js-devGrid").style.width = "30px";
+  }  */}
+  }
+
+  const elClose = document.getElementById('js-close');
+  elClose.addEventListener('click', close);
+
+  function close() {
+    document.getElementById('js-devGrid').classList.add('is-collapsed');
+    document.getElementById('js-close').classList.add('is-hidden');
+    document.getElementById('js-open').classList.remove('is-hidden');
+  }
+
+  const elOpen = document.getElementById('js-open');
+  elOpen.addEventListener('click', open);
+
+  function open() {
+    document.getElementById('js-devGrid').classList.remove('is-collapsed');
+    document.getElementById('js-close').classList.remove('is-hidden');
+    document.getElementById('js-open').classList.add('is-hidden');
   }
 </script>
 {{ end }}
