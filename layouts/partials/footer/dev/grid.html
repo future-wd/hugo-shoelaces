@@ -35,15 +35,10 @@
 
   .close {
     right: 0;
-    opacity: 0.6;
   }
 
   .open {
     left: 0;
-  }
-
-  .close:hover {
-    opacity: 1;
   }
 
   .close::before,
@@ -76,16 +71,11 @@
     display: inline-block;
     width: 16px;
     height: 16px;
-    border-right: 2px solid rgba(51, 51, 51, 0.6);
-    border-top: 2px solid rgba(51, 51, 51, 0.6);
+    border-right: 2px solid #333;
+    border-top: 2px solid #333;
     transform: rotate(45deg);
   }
-
-  .open:hover::before {
-    border-right: 2px solid rgba(51, 51, 51, 1);
-    border-top: 2px solid rgba(51, 51, 51, 1);
-  }
-</style>
+  </style>
 
 
 <div id="js-devGrid" class="dev-grid container-fluid text-dark text-start is-collapsed">
