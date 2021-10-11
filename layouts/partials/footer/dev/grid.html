@@ -1,0 +1,85 @@
+{{ if eq .Site.Params.devGrid true }}
+<style>
+  .dev-grid {
+    position: fixed;
+    bottom: 20px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 2000;
+    min-width: 3400px;
+    max-width: 5000px;
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .btn-close {
+    position: relative;
+    font-size: 3rem;
+    border-width: 3px;
+    border-color: black;
+    padding: 3px;
+    margin: 5px;
+  }
+</style>
+
+
+<div id="js-devGrid" class="dev-grid container-fluid text-dark text-start" 
+style="position: fixed; bottom: 20px; margin: 0; padding: 0; overflow: hidden; z-index: 2000; width: 5000px;">
+  <table style="align-items: flex-start;">
+    <tr>
+      <th style="width: 576px; background: var(--bs-primary);">
+        <button id="js-close" class="btn-close">&times;</button>
+        XS &lt; 576px (Primary)
+      </th>
+      <th style="width: 192px; background: var(--bs-secondary);">SM &#8805; 576px (Secondary)</th>
+      <th style="width: 224px; background: var(--bs-success);">MD &#8805; 768px (Success)</th>
+      <th style="width: 208px; background: var(--bs-danger);">LG &#8805; 992px (Danger)</th>
+      <th style="width: 200px; background: var(--bs-warning);">XL &#8805; 1200px (Warning)</th>
+      <th style="width: 2000px; background: var(--bs-info);">XXL &gt; 1400px (Info)</th>
+    </tr>
+
+  </table>
+</div>
+<script>
+  var toggle = true;
+  function toggleFunction(){
+    toggle ? functionA() : functionB();
+    toggle = !toggle;
+  }
+  const close = document.getElementById('js-close');
+  close.addEventListener('click', toggleFunction);
+
+  function openGrid() {
+    document.getElementById("js-devGrid").style.width = "5000px";
+  }
+
+  function closeGrid() {
+    document.getElementById("js-devGrid").style.width = "30px";
+  }
+</script>
+{{ end }}
