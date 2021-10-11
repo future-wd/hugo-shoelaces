@@ -101,11 +101,23 @@ contact:
     icon: icons/bootstrap/clock
     hours:
     - dayOfWeek: Monday
-      opens: "09:00:00"
-      closes: "17:00:00"
+      opens: 
+        data: "09:00:00"
+        text: 9:00 AM
+      closes: 
+        data: "17:00:00"
+        text: 5:00 PM
     - dayOfWeek: Tuesday
-      opens: "09:00:00"
-      closes: "17:00:00"
+      opens: 
+        data: "09:00:00"
+        text: 9:00 AM
+      closes: 
+        data: "17:00:00"
+        text: 5:00 PM
+    - dayOfWeek: Saturday
+      custom: By Appointment
+    - dayOfWeek: Sunday
+      custom: Closed
   telephone:
   # first record appears in schema data
   - name: Phone

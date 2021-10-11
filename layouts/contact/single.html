@@ -1,7 +1,22 @@
 {{ define "main" }}
 
-{{ partial "blocks/contact-details" . }}
 
 
+<div class="row">
+  <div class="col">
+    <h1>{{- .Title -}}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    {{ partial "blocks/contact/details" . }}
+  </div>
+  <div class="col-md-6">
+    {{ with .Params.form.title }}
+    <h3>{{ . }}</h3>
+    {{ end }} 
+    {{ partial "blocks/contact/form" .Params.form }}
+  </div>
+</div>
 
 {{ end }}

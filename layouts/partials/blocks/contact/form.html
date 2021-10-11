@@ -1,0 +1,98 @@
+{{ define "field" }}
+{{ if eq .col "col"}}
+{{- /* remove margin and padding for nested rows */ -}}
+<div class="row m-0 p-0">
+{{ end }}
+<div class="mb-3{{ with .col }} {{ . }}{{end}}">
+  {{ with .label}}
+  <label for="{{- $.id -}}" class="form-label">{{ . }}{{ if $.required }}<span class="text-danger"> *</span>{{ end }}</label>
+  {{ end }}
+  {{- if eq .type "textarea" -}}
+  {{ print "<textarea" | safeHTML }}
+  {{- else -}}
+  {{ print "<input" | safeHTML }}
+  {{ end }} 
+  id="{{- .id -}}" 
+  class="form-control {{ .class }}"
+  name="{{- .name -}}" 
+  placeholder="{{- .placeholder -}}" 
+  {{ if eq .readonly true }}
+  readonly aria-label="readonly input"
+  {{ else if not .label }}
+  aria-label="{{- .placeholder -}}"
+  {{ end }}
+  {{ with .description -}}aria-describedby="{{- . -}}"{{- end -}}
+  {{ with .minlength -}} minlength="{{- . -}}"{{- end -}}
+  {{ if .required }} required{{ end }}
+  {{ if .autofocus }} autofocus{{ end }}
+  {{ if eq .type "textarea" }}
+    rows="{{- .rows -}}"></textarea>
+  {{ else }}
+    type="{{- .type -}}">
+  {{ end }}
+  {{ with .description -}}
+  <div id="{{- .id -}}-help" class="form-text">{{- . -}}</div>
+  {{- end -}}
+  {{ with .invalidFeedback }}
+  <div class="invalid-feedback">
+    {{- . -}}
+  </div>
+  {{ end }}
+</div>
+{{ if eq .col "col"}}
+</div>
+{{ end }}
+
+{{ end }}
+
+
+<form id="{{ .id }}" 
+  class="contact-form needs-validation" 
+  novalidate 
+  enctype="multipart/form-data"
+  >
+  <div class="container m-0 p-0">
+    <div class="row pt-0">
+      {{ range .inputs }}
+        {{ template "field" . }}
+      {{ end }}
+    </div>
+  </div>
+  <noscript>Please enable javascript to use the contact form</noscript>
+  <button class="btn btn-outline-primary btn-lrg mt-3" id='js-submit' disabled>Send</button>
+</form>
+
+
+<div id="js-load" class="spinner-border d-none mt-3" role="status"></div>
+<div id="js-statusMessage" class="is-hidden u-fade-in mt-3" role="alert"></div>
+
+{{/*  
+
+  example code to call template
+
+    <div class="row">
+    <div class="col">
+      {{ with .params.form.title }}
+      <h3>{{ . }}</h3>
+      {{ end }} 
+      {{ partial "content/contact-form" .params.form }}
+    </div>
+  </div>
+
+  
+  
+  description:
+  https://getbootstrap.com/docs/5.0/forms/overview/#form-text
+  disabled:
+  https://getbootstrap.com/docs/5.0/forms/overview/#disabled-forms
+
+  readonly: true
+  https://getbootstrap.com/docs/5.0/forms/form-control/#readonly
+
+  class could include
+  https://getbootstrap.com/docs/5.0/forms/form-control/#sizing
+
+  form-control-plaintext (remove form-control)
+  
+  */}}
+

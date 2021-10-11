@@ -3,10 +3,15 @@
   {{ range $value }}
     {{ $text := .text }}
     {{ if eq $key "openinghours" }}
-      {{ $text = "" }}
+      {{ $text = "<table><tbody>" }}
       {{ range .hours }}
-      {{ $text = print $text (printf "%s: %s - %s<br>" .dayOfWeek .opens .closes)}}
+        {{ if .custom }}
+          {{ $text = printf "%s <tr><td>%s:  </td><td>%s</td></tr>" $text .dayOfWeek .custom | safeHTML }}
+        {{ else }}
+          {{ $text = printf "%s <tr><td>%s:  </td><td>%s - %s</td></tr>" $text .dayOfWeek .opens.text .closes.text | safeHTML }}
+        {{ end }}
       {{ end }}
+      {{ $text = print $text "</tbody></table>"}}
     {{ end }}
     {{ if eq $key "address" }}
       {{ $text = "" }}
