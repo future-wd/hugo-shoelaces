@@ -8,3 +8,5 @@ github.com/future-wd/hugo-svg-font v2.0.0+incompatible h1:8nxxLojtb/O4xQUjrLvbs1
 github.com/future-wd/hugo-svg-font v2.0.0+incompatible/go.mod h1:piGkkzYhOE5DdcZiYUIiiBTCXCUl4QmCrVcmtH4jOoU=
 github.com/future-wd/hugo-svg-font/v2 v2.0.2 h1:uARvtH9xVqCk8s5urSCnf51UQ9hSPUmOKqvXomyAR44=
 github.com/future-wd/hugo-svg-font/v2 v2.0.2/go.mod h1:+fHj9IQFqQPVz/JXV5uEiqmkDRQLeClX7IlBp/fvfhI=
+github.com/future-wd/hugo-svg-font/v2 v2.1.0 h1:nyn9tm8DfsI5CWLcddEAXDLmuWPOUnz+C5f+v8DHlkw=
+github.com/future-wd/hugo-svg-font/v2 v2.1.0/go.mod h1:+fHj9IQFqQPVz/JXV5uEiqmkDRQLeClX7IlBp/fvfhI=
