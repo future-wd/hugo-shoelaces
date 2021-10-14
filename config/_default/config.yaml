@@ -8,6 +8,7 @@ disableKinds: ["taxonomy", "taxonomyTerm"]
 enableEmoji: true
 enableGitInfo: false
 enableRobotsTXT: true
+# googleAnalytics: 
 languageCode: "en-US"
 paginate: 7
 rssLimit: 10
@@ -72,4 +73,4 @@ related:
 module:
   imports:
   - path: github.com/future-wd/hugo-image
-  - path: github.com/future-wd/hugo-svg-font
+  - path: github.com/future-wd/hugo-svg-font/v2

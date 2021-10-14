@@ -8,3 +8,5 @@
 
 // lazy sizes for image loading
 // import 'lazysizes';
+
+import './image.js';

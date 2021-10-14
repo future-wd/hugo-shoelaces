@@ -8,18 +8,26 @@ params:
       url: http://www.facebook.com/user
       icon: icons/bootstrap/facebook
 */ -}}
-{{ $em := "" }}
-{{ $fontClass := "" }}
-{{ $class := "" }}
-{{ if reflect.IsMap . }}
-{{ $em = .em }}
-{{ $fontClass = .fontClass }}
-{{ $class = .class }}
-{{ end }}
+{{- $em := "" -}}
+{{- $fontClass := "" -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . -}}
+  {{- $em = .em -}}
+  {{- $fontClass = .fontClass -}}
+  {{- with .class -}}
+    {{- if reflect.IsSlice . -}}
+      {{- $class = . -}}
+      {{- $class = delimit $class " " -}}
+    {{- else -}}
+      {{- $class = . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 {{- range $key, $value := site.Params.social -}}
+{{- $title := $value.title | default (humanize $key) -}}
 {{- if and (ne $value.disable true) $value.icon -}}
-<a role="button" href="{{ $value.url }}" title="{{ $value.title | default (humanize $key) }}" class="{{ $class }} d-inline-block" target="_blank" rel="noopener">
-  <span class="{{ $fontClass }}">{{ partial "svg-font.html" (dict "svg" $value.icon "block" true "em" $em ) }}</span>
+<a role="button" href="{{- $value.url -}}" title="{{- $title -}}" class="{{- $class }} d-inline-block" target="_blank" rel="noopener">
+  <span class="{{ $fontClass }}">{{- partial "svg-font.html" (dict "src" $value.icon "block" true "em" $em "title" $title) -}}</span>
 </a>
-{{ end }}
-{{ end }}
+{{- end -}}
+{{- end -}}
