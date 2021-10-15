@@ -7,12 +7,12 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server  --bind=0.0.0.0 --disableFastRender --gc",
-    "dev:preview": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server  --bind=0.0.0.0 --disableFastRender --gc --buildDrafts --buildFuture",
+    "dev": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc",
+    "dev:preview": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc --buildDrafts --buildFuture",
     "build": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo --gc --minify",
     "start": "shx rm -rf public && hugo server --disableFastRender --renderToDisk",
     "start:preview": "shx rm -rf public && hugo server --disableFastRender --renderToDisk --buildDrafts --buildFuture",
-    "start:production": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server  --bind=0.0.0.0 --disableFastRender --gc --minify --environment production",
+    "start:production": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc --minify --environment production",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles && npm run -s lint:markdown",
     "lint:scripts": "eslint assets/js config functions",
     "lint:styles": "stylelint \"assets/scss/**/*.{css,sass,scss,sss,less}\"",
