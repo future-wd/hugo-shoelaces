@@ -18,7 +18,6 @@
   {{ $src = $src  | js.Build (dict "targetPath" $.targetPath "minify" true ) | fingerprint "sha512" -}}
 {{ end -}}
 <script {{ $.load | default "defer" | safeHTMLAttr }}
-  type="text/javascript"
   src="{{- $src.RelPermalink -}}"
   integrity="{{- $src.Data.Integrity -}}">
 </script>
