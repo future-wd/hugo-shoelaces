@@ -1,8 +1,15 @@
+# https://docs.netlify.com/routing/headers/
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
-  Content-Security-Policy: default-src 'self'; manifest-src 'self'; connect-src 'self'; font-src 'self'; img-src 'self' data:; script-src 'self' 'nonce-dXNlcj0iaGVsbG8iLGRvbWFpbj0iaGVua3ZlcmxpbmRlLmNvbSIsZG9jdW1lbnQud3JpdGUodXNlcisiQCIrZG9tYWluKTs='; style-src 'self'
+  Content-Security-Policy: default-src 'self'; 
+  Content-Security-Policy: manifest-src 'self'; 
+  Content-Security-Policy: connect-src 'self'; 
+  Content-Security-Policy: font-src 'self'; 
+  Content-Security-Policy: img-src 'self'; 
+  Content-Security-Policy: script-src 'self' 'sha256-JMaXm80HIxBXBZZMttT2sWrDaNZsOmeIwRbmgzvZsi4='; 
+  Content-Security-Policy: style-src 'self';
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin
   Feature-Policy: geolocation 'self'

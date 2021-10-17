@@ -5,5 +5,9 @@ lead: "Shoelaces is a Hugo starter which helps you build modern websites that ar
 date: 2020-04-17T12:18:10+00:00
 lastmod: 2020-04-17T12:18:10+00:00
 draft: false
+menu:
+  main:
+    name: Home
+    weight: 10
 images: []
 ---

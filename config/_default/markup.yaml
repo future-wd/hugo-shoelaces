@@ -1,0 +1,19 @@
+defaultMarkdownHandler: "goldmark"
+
+goldmark:
+  extensions:
+    linkify: false
+  parser:
+    attribute:
+      block: true
+  renderer:
+    unsafe: true
+
+highlight:
+  codeFences: false
+  noClasses: false
+  style: "dracula"
+  tabWidth: 2
+
+# tableOfContents:
+# add config here

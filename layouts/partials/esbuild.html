@@ -13,12 +13,11 @@
   {{ $src = $src | js.Build (dict "targetPath" $.targetPath "sourceMap" "inline") | fingerprint "sha512" -}}
 {{- /* if .transpile true */ -}}
   {{ else if $.transpile -}}
-  {{ $src = $src  | js.Build  (dict "targetPath" $.targetPath) | babel ("noComments" true "minified" true "compact" true "config" "config/babel.config.js") | fingerprint "sha512" -}}
+  {{ $src = $src  | js.Build  (dict "targetPath" $.targetPath) | babel (dict "noComments" true "minified" true "compact" true "config" "config/babel.config.js") | fingerprint "sha512" -}}
 {{ else -}}
   {{ $src = $src  | js.Build (dict "targetPath" $.targetPath "minify" true ) | fingerprint "sha512" -}}
 {{ end -}}
 <script {{ $.load | default "defer" | safeHTMLAttr }}
-  type="text/javascript"
   src="{{- $src.RelPermalink -}}"
   integrity="{{- $src.Data.Integrity -}}">
 </script>

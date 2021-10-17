@@ -1,22 +1,23 @@
 <!doctype html>
 <html lang="{{ .Lang }}" class="min-vh-100">
   <head>
-    {{ partial "head/head.html" . }}
+    {{ partial "head/index" . }}
   </head>
-  {{- partial "head/body-class.html" . -}}
+  {{- partial "head/body-class" . -}}
   {{- $bodyClass := delimit (.Scratch.Get "class") " " -}}
   <body class="{{ $bodyClass }} d-flex flex-column min-vh-100">
-    {{ if and .IsHome .Site.Params.alert }}
-      {{ partial "header/alert.html" . }}
-    {{ end }}
-    {{ partial "header/header.html" . }}
-    <main class="mb-auto">
+    <header>
+    {{ partial "header/index" . }}
+    </header>
+    <main class="mb-auto mt-5 pt-3">
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "sidebar-footer" . }}{{ end }}
     <footer>
-      {{ partial "footer/footer.html" . }}
+      {{ partial "footer/footer" . }}
     </footer>
-    {{ partial "footer/script-footer.html" . }}
+    {{ partial "footer/script-footer" . }}
+    {{ partial "footer/dev/grid" . }}
+    {{ partial "footer/dev/debug-footer" . }}
   </body>
 </html>

@@ -5,6 +5,9 @@ date: 2020-04-17T12:17:54+00:00
 lastmod: 2020-04-17T12:17:54+00:00
 draft: false
 images: []
+menu:
+  main:
+    weight: 20
 ---
 
 How to start a new Hyas project — one pager.

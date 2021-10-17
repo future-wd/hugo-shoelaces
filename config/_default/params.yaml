@@ -49,9 +49,6 @@ smallLimit: "300"
 # Footer - override default copyright message
 # footer: "Custom Footer Text"
 
-# Feed
-copyRight: "Copyright (c) 2020-2021 Henk Verlinde"
-
 # Alert
 alert: false
 alertText: "Deliver web projects 10x faster. <a class=\"alert-link\" href=\"https://www.netlify.com/whitepaper/\" target=\"_blank\" rel=\"noopener\">Get the free enterprise paper →</a>"
@@ -75,11 +72,13 @@ social:
 ## JSON-LD
 schemaType: "Organization"
   # schemaType: "Person"
-schema:
+contact:
   # https://schema.org/PostalAddress
   address:
   # first record is for schema
-    streetAddress: 48 Pirrama Rd
+  - name: Address
+    streetAddress: 
+    - 48 Pirrama Rd
     addressLocality: Pyrmont
     addressRegion: NSW
     postalCode: 2009
@@ -96,34 +95,53 @@ schema:
   #   addressRegion: NSW
   #   postalCode: 2009
   #   addressCountry: Australia
+
   openingHours:
-  - dayOfWeek: Monday
-    opens: "09:00:00"
-    closes: "17:00:00"
-  - dayOfWeek: Tuesday
-    opens: "09:00:00"
-    closes: "17:00:00"
+  - name: Opening Hours
+    icon: icons/bootstrap/clock
+    hours:
+    - dayOfWeek: Monday
+      opens: 
+        data: "09:00:00"
+        text: 9:00 AM
+      closes: 
+        data: "17:00:00"
+        text: 5:00 PM
+    - dayOfWeek: Tuesday
+      opens: 
+        data: "09:00:00"
+        text: 9:00 AM
+      closes: 
+        data: "17:00:00"
+        text: 5:00 PM
+    - dayOfWeek: Saturday
+      custom: By Appointment
+    - dayOfWeek: Sunday
+      custom: Closed
   telephone:
   # first record appears in schema data
-  - text:
-    full:
+  - name: Phone
+    text: (02) 8004 3293
+    url: "tel:+61280043293"
     icon: icons/bootstrap/phone
     disable: false
   # mobile
-  - text:
-    url:
-    icon: icons/bootstrap/telephone
-    disable: false
+  # - text:
+  #   url:
+  #   icon: icons/bootstrap/telephone
+  #   disable: false
   email: 
-  - text:
-    url: icons/bootstrap/envelope
-    icon:
+  - name: Email
+    text: test@domain.com
+    url: "mailto:test@domain.com"
+    icon: icons/bootstrap/envelope
     disable: false
 # only for contact details display
-extraItem:
-  - text: Help Desk
-    url:
-    icon:
+  extraItem:
+  - name: Help Desk
+    text: Help Desk
+    url: helpdesk.com
+    icon: 
     disable: true
 
 
@@ -131,3 +149,46 @@ extraItem:
 # foundingDate:
 # foundingLocation:
 # logo
+
+
+image:
+  formats: ["original", "webp"]
+  loading: lazy
+  layout: responsive
+  objectFit: cover
+  minWidth: 500
+  maxWidth: 4000
+  deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840]
+  imageSizes: [16, 32, 48, 64, 96, 128, 256, 384]
+  #css: 
+  placeholder:
+    style: blur # empty | color | blur | solid (blur/solid js or inline type only)
+    type: js  # css | js | inline
+    blur:
+      amount: 3
+      size: 50
+    # nativePlaceholder: none or colour value
+    # libraryPlaceholder: blur, none, colour
+  link:
+    class:
+    rel: 
+    target: 
+    #css: 
+  figure:
+    class: figure # .figureCSS to target figures
+    titleClass: h4
+    imageClass: figure-img
+    figcaptionClass: figure-caption
+    attrLinkClass: ""
+    #css: 
+  lazyLibrary:
+    enable: true
+    dataSrcset: true
+    dataSrc: true
+    dataSizes: true
+    class: lazyload # can be array/slice
+    #  imageCSS: "display:block;width:100%;" # add to css, but configure here?
+    #  figureCSS: "display:block!important;" # add to css, but configure here? img.image and figure.[figure.class] (takes )
+    # add to css 
+    # $lazyLibraryFigureStyle := site.Params.image.lazyLibrary.figureStyle
+    noscript: true

@@ -1,0 +1,134 @@
+{{ if eq .Site.Params.devGrid true }}
+<style>
+  .dev-grid {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 5000px;
+    height: 32px;
+    transition: 0.5s;
+  }
+
+  .dev-grid table {
+    height: 100%;
+  }
+
+  .dev-grid.is-collapsed {
+    width: 32px;
+    color: rgba(0, 0, 0, 0) !important;
+  }
+
+  .dev-grid.is-collapsed span {
+    display: none;
+  }
+
+  .close,
+  .open {
+    position: fixed;
+    bottom: 0;
+    width: 32px;
+    height: 32px;
+    transition: 0.5s;
+  }
+
+  .close {
+    right: 0;
+  }
+
+  .open {
+    left: 0;
+  }
+
+  .close::before,
+  .close::after {
+    position: absolute;
+    right: 16px;
+    content: "";
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+
+  .close::before {
+    transform: rotate(45deg);
+  }
+
+  .close::after {
+    transform: rotate(-45deg);
+  }
+
+  .close.is-hidden,
+  .open.is-hidden {
+    display: none;
+  }
+
+  .open::before {
+    position: absolute;
+    top: 7px;
+    left: 2px;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-right: 3px solid #333;
+    border-top: 3px solid #333;
+    transform: rotate(45deg);
+  }
+  </style>
+
+
+<div id="js-devGrid" class="dev-grid container-fluid text-dark text-start is-collapsed">
+
+  <table style="align-items: flex-start;">
+    <tr>
+      <th style="width: 576px; background: var(--bs-primary);">XS &lt; 576px (Primary)</th>
+      <th style="width: 192px; background: var(--bs-secondary);">SM &#8805; 576px (Secondary)</th>
+      <th style="width: 224px; background: var(--bs-success);">MD &#8805; 768px (Success)</th>
+      <th style="width: 208px; background: var(--bs-danger);">LG &#8805; 992px (Danger)</th>
+      <th style="width: 200px; background: var(--bs-warning);">XL &#8805; 1200px (Warning)</th>
+      <th style="width: 2000px; background: var(--bs-info);">XXL &gt; 1400px (Info)</th>
+    </tr>
+  </table>
+  <a href="#" class="open" id="js-open"></a>
+  <a href="#" class="close is-hidden" id="js-close"></a>
+</div>
+<script>
+  {
+    {/*  var toggle = true;
+  function toggleFunction(){
+    toggle ? closeGrid() : openGrid();
+    toggle = !toggle;
+  }
+  const close = document.getElementById('js-close');
+  close.addEventListener('click', toggleFunction);
+
+  function openGrid() {
+    document.getElementById("js-devGrid").style.width = "5000px";
+  }
+
+  function closeGrid() {
+    document.getElementById("js-devGrid").style.width = "30px";
+  }  */}
+  }
+
+  const elClose = document.getElementById('js-close');
+  elClose.addEventListener('click', close);
+
+  function close() {
+    document.getElementById('js-devGrid').classList.add('is-collapsed');
+    document.getElementById('js-close').classList.add('is-hidden');
+    document.getElementById('js-open').classList.remove('is-hidden');
+  }
+
+  const elOpen = document.getElementById('js-open');
+  elOpen.addEventListener('click', open);
+
+  function open() {
+    document.getElementById('js-devGrid').classList.remove('is-collapsed');
+    document.getElementById('js-close').classList.remove('is-hidden');
+    document.getElementById('js-open').classList.add('is-hidden');
+  }
+</script>
+{{ end }}
