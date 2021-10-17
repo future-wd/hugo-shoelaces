@@ -1,10 +1,36 @@
-{{- with $src := resources.Get . -}}
-{{ if eq (hugo.Environment) "development" -}}
-  {{ $options := (dict "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
-  {{ $src = $src | toCSS $options | resources.Fingerprint -}}
-{{ else -}}
-  {{ $options := (dict "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-  {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint -}}
-{{ end -}}
-<link rel="stylesheet" href="{{ $src.Permalink | relURL }}" integrity="{{ $src.Data.Integrity }}" crossorigin="anonymous">
+{{- /* declare variables */ -}}
+{{- $targetDir := "css" -}}
+{{- $targetPath := "" -}}
+{{- $file := "" -}}
+{{- /* assign variables from dict if present */ -}}
+{{- if reflect.IsMap . -}}
+  {{- $targetDir = .targetDir | default $targetDir -}}
+  {{- $targetPath = .targetPath | default $targetPath -}}
+  {{- $file = .src -}}
+{{- else -}}
+  {{- /* if dict not present, assign context to $file */ -}}
+  {{- $file = . }}
+{{- end -}}
+{{- /* remove first directory from path if present */ -}}
+{{- $fileCSS := $file }}
+{{- if findRE "(.*)/" $fileCSS -}}
+  {{- $fileCSS = replaceRE "(.*)/" "" $fileCSS -}}
+  {{- if strings.HasSuffix $fileCSS (or "scss" "sass") -}}
+    {{ $fileCSS = substr $fileCSS 0 -4 -}}
+    {{ $fileCSS = printf "%s.css" $fileCSS -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $targetPath -}}
+  {{- $targetPath = printf "%s/%s" $targetDir $fileCSS -}}
+{{- end -}}
+{{- /* parse CSS into libsass compiler */ -}}
+{{- with $src := resources.Get $file -}}
+  {{ if eq (hugo.Environment) "development" -}}
+    {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
+    {{ $src = $src | toCSS $options | resources.Fingerprint -}}
+  {{ else -}}
+    {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
+    {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint -}}
+  {{ end -}}
+  <link rel="stylesheet" href="{{ $src.Permalink | relURL }}" integrity="{{ $src.Data.Integrity }}" crossorigin="anonymous">
 {{- end -}}

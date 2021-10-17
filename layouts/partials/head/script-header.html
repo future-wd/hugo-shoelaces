@@ -1,6 +1,7 @@
 {{ partial "esbuild" (dict "src" "js/bootstrap.js") -}}
 {{ partial "esbuild" (dict "src" "js/vendor.js") -}}
 {{ partial "esbuild" (dict "src" "js/assets.js" "transpile" true) -}}
+{{ partial "lazysizes" . -}}
 {{- /* EXAMPLE - only load script for production
 {{ if eq (hugo.Environment) "production" -}}
   {{ partial "esbuild" (dict "src" "js/instantpage.js") -}}
