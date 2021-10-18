@@ -5,7 +5,8 @@
 @import "common/variables";
 
 /** Import Bootstrap */
-@import "bootstrap/scss/bootstrap";
+// @import "bootstrap/scss/bootstrap";
+@import "bootstrap";
 
 /** Import theme styles */
 // common
@@ -17,5 +18,4 @@
 @import "components";
 // page components
 @import "layouts";
-
 @import "svg-font.scss";
