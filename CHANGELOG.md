@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/future-wd/hugo-shoelaces/compare/v1.5.3...v1.6.0) (2021-10-18)
+
+
+### Features
+
+* esbuild dual output for module browsers ([d0f1579](https://github.com/future-wd/hugo-shoelaces/commit/d0f157965dd8221cdbc0327336c71046330ce499))
+
+
+### Bug Fixes
+
+* add gomod to dependabot change to monthy ([ae03794](https://github.com/future-wd/hugo-shoelaces/commit/ae037943c1b2047f23faa51da7f7651c146746ab))
+* add header for js year ([6870322](https://github.com/future-wd/hugo-shoelaces/commit/687032213c0f0f3d758784be0996fc0397d54758))
+* add npm-check ([a0dbd43](https://github.com/future-wd/hugo-shoelaces/commit/a0dbd43d157ec47cec06a0c16086d27a540720b3))
+* added dict to babel ([6f6b1fb](https://github.com/future-wd/hugo-shoelaces/commit/6f6b1fb2f919e228d24b3b6b98a4249656223d72))
+* added social menu with params ([be62a41](https://github.com/future-wd/hugo-shoelaces/commit/be62a41c2bb9503d0b3afebbb222b50da40dbd13))
+* change params to yaml ([2ecf89b](https://github.com/future-wd/hugo-shoelaces/commit/2ecf89b6965fd1d3484de65b1016d101b395b264))
+* cleaned up form ([083c895](https://github.com/future-wd/hugo-shoelaces/commit/083c895f00b83f6a7aa635f8d761e257602766a2))
+* config menus through md ([f431e20](https://github.com/future-wd/hugo-shoelaces/commit/f431e204fc39e08c403607136135f57fab3146b0))
+* contact hours working ([bb30a54](https://github.com/future-wd/hugo-shoelaces/commit/bb30a54c0c9f16656259a6b9643f0ee42b5f958b))
+* convert config to yaml ([31d8970](https://github.com/future-wd/hugo-shoelaces/commit/31d8970b0893f460f40812c45787239c2e020e52))
+* css tweak ([becc058](https://github.com/future-wd/hugo-shoelaces/commit/becc058b37e009b6ea685ebe943c4c6d83afed7c))
+* default and config targetDir & targetPath ([b0ac478](https://github.com/future-wd/hugo-shoelaces/commit/b0ac478aa1640983ba9bef0ae0b2a672424b37f1))
+* fine tune html ([ec1c352](https://github.com/future-wd/hugo-shoelaces/commit/ec1c352b18d68f5e02275997859955c111ab4019))
+* form and details ([5f07089](https://github.com/future-wd/hugo-shoelaces/commit/5f070895cf84235a8bec4ae3e4ad3e4736f9309d))
+* grid css ([c5d474b](https://github.com/future-wd/hugo-shoelaces/commit/c5d474bf3165481630246c41a3af3a97b409e2cd))
+* grid working ([492f7ea](https://github.com/future-wd/hugo-shoelaces/commit/492f7ea17381cf5f060e94be570c6a4e3f0f3996))
+* install lazysizes dep ([fdd70db](https://github.com/future-wd/hugo-shoelaces/commit/fdd70dba02067eedb384d8ce08d5275fc3ce8516))
+* libsass partial conditional $src ([0667105](https://github.com/future-wd/hugo-shoelaces/commit/0667105b492226c7115a9136fed900181cfef585))
+* refactor scss imports ([3a31e05](https://github.com/future-wd/hugo-shoelaces/commit/3a31e05d50a581633c20682e0fbd6e283b8ea74d))
+* remove browser list from package.json ([f251cd6](https://github.com/future-wd/hugo-shoelaces/commit/f251cd63611e36d3a5b0aefb251d69f560bdc01f))
+* remove default config ([c0d6c98](https://github.com/future-wd/hugo-shoelaces/commit/c0d6c980ce12839d347202415b68f2b5714c8d35))
+* remove image.js ([d8e7d8c](https://github.com/future-wd/hugo-shoelaces/commit/d8e7d8cf5b17243f8d1674b2f2cb07c8156c56aa))
+* remove port bind for compadibility with hugo server ([d1330a5](https://github.com/future-wd/hugo-shoelaces/commit/d1330a51efd1b1da12486872b85563384eea87a2))
+* remove target paths from libsass ([50d0a30](https://github.com/future-wd/hugo-shoelaces/commit/50d0a3019c663e4449c020e4cfb89f8999f4a50f))
+* rename index partials ([506463b](https://github.com/future-wd/hugo-shoelaces/commit/506463be25dfb3a993272e2232ce19ca83ea9137))
+* social menu ([2ea273d](https://github.com/future-wd/hugo-shoelaces/commit/2ea273dfcefeb8c76d39305095fce37b82685e16))
+* social menu and schema params ([e7a2dc7](https://github.com/future-wd/hugo-shoelaces/commit/e7a2dc7f0d522c8f2d8a5c661ea9030fa4b6dc01))
+* social-menu and schema params ([c901f15](https://github.com/future-wd/hugo-shoelaces/commit/c901f157ce7742047fbb8306e43e6b6702bc5f0b))
+* update bs5 browser list ([97bfb4f](https://github.com/future-wd/hugo-shoelaces/commit/97bfb4ff98f65d4e3d78873309a029a7a9a1149f))
+* updated modules ([254a92f](https://github.com/future-wd/hugo-shoelaces/commit/254a92fdd38ef1f43a1a3006780bd562365013dc))
+* updated theme.toml ([41e6511](https://github.com/future-wd/hugo-shoelaces/commit/41e65112ede06ed1c8af51b117565c3810ec4e0b))
+
 ### [1.5.3](https://github.com/future-wd/hugo-shoelaces/compare/v1.5.2...v1.5.3) (2021-10-03)
 
 
