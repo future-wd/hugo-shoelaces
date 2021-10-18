@@ -1,17 +1,24 @@
 {{ define "main" }}
-<div class="row justify-content-center">
-  <div class="col-lg-7 pb-5 text-center">
-    <h1>{{ .Title }}</h1>
-    <p>{{ .Params.Lead | safeHTML }}</p>
-    <a class="btn btn-dark px-3" href="{{ "quick-start/" | absURL }}" role="button">Quick Start</a>
-    <a class="btn btn-outline-dark px-3" href="https://gethyas.com/" role="button">View Docs</a>
-    <p class="meta">Open-source MIT Licensed. <a href="https://github.com/future-wd/hugo-shoelaces">GitHub v{{ $data := getJSON "https://raw.githubusercontent.com/future-wd/hugo-shoelaces/master/package.json" }}{{ with $data}}{{ .version }}{{ end }}</a></p>
+<div class="container-xxl">
+  <div class="row justify-content-center">
+    <div class="col-lg-7 pb-5 text-center">
+      <h1>{{ .Title }}</h1>
+      <p>{{ .Params.Lead | safeHTML }}</p>
+      <a class="btn btn-dark px-3" href="{{ " quick-start/" | absURL }}" role="button">Quick Start</a>
+      <a class="btn btn-outline-dark px-3" href="https://gethyas.com/" role="button">View Docs</a>
+      <p class="meta">Open-source MIT Licensed. <a href="https://github.com/future-wd/hugo-shoelaces">GitHub v{{ $data
+          := getJSON "https://raw.githubusercontent.com/future-wd/hugo-shoelaces/master/package.json" }}{{ with
+          $data}}{{ .version }}{{ end }}</a></p>
+      {{ partial "image" (dict "page" . "src" "10mb.jpg" "title" "demo") }}
+    </div>
   </div>
-</div>
-{{ end }}
+  
 
-{{ define "section" }}
-<section class="section container-fluid">
+
   {{- .Content -}}
-</section>
+
+
+
+</div>
+
 {{ end }}

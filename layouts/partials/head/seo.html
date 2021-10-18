@@ -21,7 +21,6 @@
 {{ else -}}
   <meta name="description" content="{{ .Site.Params.description }}">
 {{ end -}}
-
 {{ if $.Scratch.Get "paginator" }}
   <link rel="canonical" href="{{ .Paginator.URL | absURL }}">
   {{ if .Paginator.HasPrev -}}
@@ -33,11 +32,15 @@
 {{ else  -}}
   <link rel="canonical" href="{{ .Permalink }}">
 {{ end -}}
-{{- /* partial "head/opengraph.html" . }}
-{{ partial "head/twitter_cards.html" . */ -}}
 {{ template "_internal/twitter_cards.html" . -}}
+{{ with .Site.Params.social.twitter.account -}}
+<meta name="twitter:site" content="{{ . }}"/>
+{{ end -}}
 {{ template "_internal/opengraph.html" . -}}
 {{ range .AlternativeOutputFormats -}}
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
 {{ end -}}
-{{ partial "head/structured-data.html" . }}
+{{/* partial "head/structured-data.html" . */}}
+{{- with .Site.GoogleAnalytics -}}
+{{ template "_internal/google_analytics_async.html" . -}}
+{{- end -}}

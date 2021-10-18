@@ -1,0 +1,49 @@
+<div class="contact-details m-3">
+{{ range $key, $value := .Site.Params.contact }}
+  {{ range $value }}
+    {{ $text := .text }}
+    {{ if eq $key "openinghours" }}
+      {{ $text = "<table><tbody>" }}
+      {{ range .hours }}
+        {{ if .custom }}
+          {{ $text = printf "%s <tr><td>%s:  </td><td>%s</td></tr>" $text .dayOfWeek .custom | safeHTML }}
+        {{ else }}
+          {{ $text = printf "%s <tr><td>%s:  </td><td>%s - %s</td></tr>" $text .dayOfWeek .opens.text .closes.text | safeHTML }}
+        {{ end }}
+      {{ end }}
+      {{ $text = print $text "</tbody></table>"}}
+    {{ end }}
+    {{ if eq $key "address" }}
+      {{ $text = "" }}
+      {{ range .streetAddress }}
+        {{ $text = print $text . "<br>"}} 
+      {{ end }}
+      {{ with .addressLocality }}
+        {{ $text = print $text . "<br>" }}
+      {{ end }}
+      {{ with .addressRegion }}
+        {{ $text = print $text . ", " }}
+      {{ end }}
+      {{ with .postalCode }}
+        {{ $text = print $text . }}
+      {{ end }}
+    {{ end }}
+    {{ if not .disable }}
+      <div class="d-flex flex-row align-middle">
+        <div class="d-flex align-items-center">
+          <div class="fs-4 text-primary me-2 my-2">
+          {{ partial "svg-font" (dict "src" .icon "block" true "title" .name) }} 
+          </div>
+        </div>
+        <div class=" d-flex align-items-center">
+          {{ $ctx := . }}
+          {{- with .url -}}
+          <a class="text-break text-decoration-none" href="{{- . | safeURL -}}" 
+          {{- if ne $key "telephone" -}} target="_blank" rel="noopener"{{- end -}}>{{- end -}}
+          {{- $text | markdownify -}}{{- if .url -}}</a>{{- end -}}
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+{{ end }}
+</div>
