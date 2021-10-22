@@ -4,7 +4,8 @@
     * src - javascript file to build, relative to assets folder
     * targetPath - output path including file name, relative to site root. Can be left unset. 
     * load - default "defer" can be set to "async" or " " . To pre load scripts, call partial in <head> and use defer (default)
-    * transpile - default false, set to true to transpile code down to es5 with babel 
+    * transpile - default false, set to true or es5 to transpile code down to es5 with babel, differential for both es5 and es6 (module browsers), es6 to only support module browsers
+    * module - default false, set to true to target only module browsers
     */ -}}
 {{- $mod := "" -}}
 {{- $targetPath := .targetPath | default .src -}}
@@ -22,8 +23,12 @@
   {{- /* if .transpile true */ -}}
     {{ else if $.transpile -}}
     {{ $src = $src  | js.Build  (dict "targetPath" $targetPath) | babel (dict "noComments" true "minified" true "compact" true "config" "config/babel.config.js" "target" "es5") | fingerprint -}}
-    {{- if eq $.transpile "dual" -}}
+    {{- if eq (or (.transpile (or "es6" "differential") (eq .module true)) -}}
+      {{- if not .module true -}}
       {{ $mod = $src  | js.Build  (dict "targetPath" $targetPathMod) | babel (dict "noComments" true "minified" true "compact" true "config" "config/babel.module.config.js" "target" "es2015") | fingerprint -}}
+      {{- else -}}
+      {{ $mod = $src  | js.Build  (dict "targetPath" $targetPathMod) | fingerprint -}}
+      {{- end -}}
       <script type="module" 
       {{ if eq $.load "async" -}} async {{- end -}}
       src="{{- $mod.RelPermalink -}}"
@@ -34,9 +39,11 @@
     {{- /* esbuild minification has not been used as target of es5 cannot be used (code will be minfied to es6) */ -}}
     {{ $src = $src  | js.Build (dict "targetPath" $.targetPath "target" "es2015" ) | minify | fingerprint -}}
   {{ end -}}
+  {{- if not (or (eq .module true) (eq .transpile "es6")) -}}
   <script {{ $.load | default "defer" | safeHTMLAttr }}
     {{ if $mod }} nomodule {{ end }}
     src="{{- $src.RelPermalink -}}"
     integrity="{{- $src.Data.Integrity -}}">
   </script>
+  {{- end -}}
 {{- end -}}
