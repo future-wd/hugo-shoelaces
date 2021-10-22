@@ -18,12 +18,12 @@
     "not Explorer <= 11"
   ],
   "scripts": {
-    "dev": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc",
-    "dev:preview": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc --buildDrafts --buildFuture",
-    "build": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo --gc --minify",
-    "start": "shx rm -rf public && hugo server --disableFastRender --renderToDisk",
-    "start:preview": "shx rm -rf public && hugo server --disableFastRender --renderToDisk --buildDrafts --buildFuture",
-    "start:production": "shx rm -rf public && exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc --minify --environment production",
+    "dev": "exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc",
+    "dev:preview": "exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc --buildDrafts --buildFuture",
+    "build": "exec-bin node_modules/.bin/hugo/hugo --gc --minify --cleanDestinationDir",
+    "start": "hugo server --disableFastRender --renderToDisk --cleanDestinationDir",
+    "start:preview": "hugo server --renderToDisk --cleanDestinationDir --disableFastRender --buildDrafts --buildFuture ",
+    "start:production": "exec-bin node_modules/.bin/hugo/hugo server --renderToDisk --cleanDestinationDir --disableFastRender --gc --minify --environment production",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles && npm run -s lint:markdown",
     "lint:scripts": "eslint assets/js config functions",
     "lint:styles": "stylelint \"assets/scss/**/*.{css,sass,scss,sss,less}\"",
