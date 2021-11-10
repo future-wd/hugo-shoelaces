@@ -15,14 +15,23 @@
   id="{{- .id -}}" 
   class="form-control {{ .class }}"
   name="{{- .name -}}" 
+  {{ if and .placeholder (not .value) }}
   placeholder="{{- .placeholder -}}" 
+  {{ end }}
   {{ if eq .readonly true }}
-  readonly aria-label="readonly input"
-  {{ else if not .label }}
+  readonly aria-label="{{ printf "Readonly input for %s" (.label | default .placeholder) }}" aria-readonly="true"
+  {{ else if .label }}
+  aria-labelledby="{{ .label }}"
+  {{ else if .placeholder}}
   aria-label="{{- .placeholder -}}"
   {{ end }}
-  {{ with .description -}}aria-describedby="{{- . -}}"{{- end -}}
+  {{ if .description }}
+  aria-describedby="{{ printf "%s-help" $.id }}"
+  {{ else if .invalidFeedback }}
+  aria-describedby="{{ printf "%s-invalid" .id }}"
+  {{ end }}
   {{ with .minlength -}} minlength="{{- . -}}"{{- end -}}
+  {{ with .value }} value="{{ . }}"{{ end }}
   {{ if .required }} required{{ end }}
   {{ if .autofocus }} autofocus{{ end }}
   {{ if eq .type "textarea" }}
@@ -31,10 +40,10 @@
     type="{{- .type -}}">
   {{ end }}
   {{ with .description -}}
-  <div id="{{- .id -}}-help" class="form-text">{{- . -}}</div>
+  <div id="{{ printf "%s-help" $.id }}" class="form-text">{{- . -}}</div>
   {{- end -}}
   {{ with .invalidFeedback }}
-  <div class="invalid-feedback">
+  <div class="invalid-feedback" id="{{ printf "%s-invalid" $.id }}">
     {{- . -}}
   </div>
   {{ end }}
