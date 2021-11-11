@@ -4,8 +4,12 @@
 {{- $file := "" -}}
 {{- /* assign variables from dict if present */ -}}
 {{- if reflect.IsMap . -}}
-  {{- $targetDir = .targetDir | default $targetDir -}}
-  {{- $targetPath = .targetPath | default $targetPath -}}
+  {{- with .targetDir }}
+    {{- $targetDir = .-}}
+  {{- end -}}
+  {{- with .targetPath -}}
+    {{- $targetPath = . -}}
+  {{- end -}}
   {{- $file = .src -}}
 {{- else -}}
   {{- /* if dict not present, assign context to $file */ -}}

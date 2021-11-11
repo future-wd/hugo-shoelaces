@@ -4,6 +4,8 @@ github.com/future-wd/hugo-image v0.1.3 h1:YcIOhZFchWuL3I5CFjICJm80oTJMlSkXSuh0Yd
 github.com/future-wd/hugo-image v0.1.3/go.mod h1:IWSFyLh5UEhs27ao9y2H339ssUaViU+2XFH2w7h6DBI=
 github.com/future-wd/hugo-image/v2 v2.0.0-alpha.2 h1:gOdC9W4GBpRxWc1LH07B6TvASgzI9A8FRmZEUTZWUx0=
 github.com/future-wd/hugo-image/v2 v2.0.0-alpha.2/go.mod h1:pgmI8Lr5TeXkl418o42OQpbz+N2ibfSE227o4tmq7JY=
+github.com/future-wd/hugo-image/v2 v2.0.0-alpha.5 h1:WWMoH7gUUw+C1udKlgrle6IqDYygJes39e593sBDmQc=
+github.com/future-wd/hugo-image/v2 v2.0.0-alpha.5/go.mod h1:pgmI8Lr5TeXkl418o42OQpbz+N2ibfSE227o4tmq7JY=
 github.com/future-wd/hugo-svg-font v0.9.1 h1:QNe/sgCthA5albq5xwvQAjkXZq7yTJs9RGIX78zK5/w=
 github.com/future-wd/hugo-svg-font v0.9.1/go.mod h1:piGkkzYhOE5DdcZiYUIiiBTCXCUl4QmCrVcmtH4jOoU=
 github.com/future-wd/hugo-svg-font v2.0.0+incompatible h1:8nxxLojtb/O4xQUjrLvbs1NClNJ8/NUYFWZ5ATAX3Ac=
@@ -14,3 +16,5 @@ github.com/future-wd/hugo-svg-font/v2 v2.1.0 h1:nyn9tm8DfsI5CWLcddEAXDLmuWPOUnz+
 github.com/future-wd/hugo-svg-font/v2 v2.1.0/go.mod h1:+fHj9IQFqQPVz/JXV5uEiqmkDRQLeClX7IlBp/fvfhI=
 github.com/future-wd/hugo-svg-font/v2 v2.1.1 h1:XxkRmCuLvFMl0aehY8KxcgtqSmDkYIUnKqW2n/fJWF4=
 github.com/future-wd/hugo-svg-font/v2 v2.1.1/go.mod h1:+fHj9IQFqQPVz/JXV5uEiqmkDRQLeClX7IlBp/fvfhI=
+github.com/future-wd/hugo-svg-font/v2 v2.3.2 h1:lk6t3QNDbSA1QEsSOQVphzmN7hYXCbsVznOiDrHatLo=
+github.com/future-wd/hugo-svg-font/v2 v2.3.2/go.mod h1:+fHj9IQFqQPVz/JXV5uEiqmkDRQLeClX7IlBp/fvfhI=

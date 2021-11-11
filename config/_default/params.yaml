@@ -136,6 +136,7 @@ contact:
     url: "mailto:test@domain.com"
     icon: icons/bootstrap/envelope
     disable: false
+    desc: Email Address
 # only for contact details display
   extraItem:
   - name: Help Desk

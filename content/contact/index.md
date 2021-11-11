@@ -17,6 +17,9 @@ form:
     minlength: 2
     required: true
     invalidFeedback: Please enter name
+    readonly: true
+    value: John
+    # description: Your full name
   - id: contact-email
     col: col-md-6
     name: email

@@ -15,7 +15,7 @@
     "Firefox ESR",
     "iOS >= 12",
     "Safari >= 12",
-    "not Explorer <= 11"
+    "Explorer >= 11"
   ],
   "scripts": {
     "dev": "exec-bin node_modules/.bin/hugo/hugo server --disableFastRender --gc",
@@ -43,7 +43,7 @@
     "stylelint-config-standard": "^22.0"
   },
   "otherDependencies": {
-    "hugo": "0.88.1"
+    "hugo": "0.89.0"
   },
   "dependencies": {
     "@babel/cli": "^7.15",
