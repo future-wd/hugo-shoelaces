@@ -5,7 +5,7 @@
 {{- /* assign variables from dict if present */ -}}
 {{- if reflect.IsMap . -}}
   {{- with .targetDir }}
-    {{- $targetDir = .-}}
+    {{- $targetDir = . -}}
   {{- end -}}
   {{- with .targetPath -}}
     {{- $targetPath = . -}}
@@ -15,26 +15,30 @@
   {{- /* if dict not present, assign context to $file */ -}}
   {{- $file = . }}
 {{- end -}}
-{{- /* remove first directory from path if present */ -}}
-{{- $fileCSS := $file }}
-{{- if findRE "(.*)/" $fileCSS -}}
-  {{- $fileCSS = replaceRE "(.*)/" "" $fileCSS -}}
-  {{- if strings.HasSuffix $fileCSS (or "scss" "sass") -}}
-    {{ $fileCSS = substr $fileCSS 0 -4 -}}
-    {{ $fileCSS = printf "%s.css" $fileCSS -}}
-  {{- end -}}
-{{- end -}}
+{{- /* if .targetPath is not specified, create one with the pattern "css/[file-name].css" */ -}}
 {{- if not $targetPath -}}
+  {{- /* remove first directory from file path if present */ -}}
+  {{- $fileCSS := $file }}
+  {{- if findRE "(.*)/" $fileCSS -}}
+    {{- $fileCSS = replaceRE "(.*)/" "" $fileCSS -}}
+    {{- /* replace .scss or .sass with .css if present */ -}}
+    {{- if strings.HasSuffix $fileCSS (or "scss" "sass") -}}
+      {{ $fileCSS = substr $fileCSS 0 -4 -}}
+      {{ $fileCSS = printf "%s.css" $fileCSS -}}
+    {{- end -}}
+  {{- end -}}
   {{- $targetPath = printf "%s/%s" $targetDir $fileCSS -}}
 {{- end -}}
 {{- /* parse CSS into libsass compiler */ -}}
 {{- with $src := resources.Get $file -}}
+  {{- /* postcss is run in all environments. Plugins can be run conditionally based on the ENV */ -}}
+  {{- $postOpts := (dict "config" "config/postcss.config.js") -}}
   {{ if eq (hugo.Environment) "development" -}}
-    {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
-    {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") |resources.Fingerprint -}}
+    {{- $opts := (dict "targetPath" $targetPath "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
+    {{- $src = $src | toCSS $opts | postCSS $postOpts | resources.Fingerprint -}}
   {{ else -}}
-    {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-    {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint -}}
+    {{ $opts := (dict "targetPath" $targetPath "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
+    {{ $src = $src | toCSS $opts | postCSS $postOpts | resources.Fingerprint -}}
   {{ end -}}
   <link rel="stylesheet" href="{{ $src.Permalink | relURL }}" integrity="{{ $src.Data.Integrity }}" crossorigin="anonymous">
 {{- end -}}
