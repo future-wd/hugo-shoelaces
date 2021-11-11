@@ -27,7 +27,7 @@
 {{- with $src := resources.Get $file -}}
   {{ if eq (hugo.Environment) "development" -}}
     {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
-    {{ $src = $src | toCSS $options | resources.Fingerprint -}}
+    {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") |resources.Fingerprint -}}
   {{ else -}}
     {{ $options := (dict "targetPath" $targetPath "transpiler" "libsass" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
     {{ $src = $src | toCSS $options | postCSS (dict "config" "config/postcss.config.js") | resources.Fingerprint -}}
