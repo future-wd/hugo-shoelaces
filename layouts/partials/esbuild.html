@@ -5,45 +5,52 @@
     * targetPath - output path including file name, relative to site root. Can be left unset. 
     * load - default "defer" can be set to "async" or " " . To pre load scripts, call partial in <head> and use defer (default)
     * transpile - default false, set to true or es5 to transpile code down to es5 with babel, differential for both es5 and es6 (module browsers), es6 to only support module browsers
-    * module - default false, set to true to target only module browsers
+    * module - default false, set to true to target only module browsers. not necessary if transpile = differential or es6
+    * only use module if you are not using transpile
     */ -}}
 {{- $mod := "" -}}
-{{- $targetPath := .targetPath | default .src -}}
-{{- /* idealy rename the js module file to *.mjs, but esbuild doesnt agree */ -}}
-{{- /* $targetPathMjs := strings.TrimRight ".js" $targetPath -}}
-{{- $targetPathMjs = printf "%s.mjs" $targetPathMjs -}}
-{{- $targetPathMod := .targetPathMod | default $targetPathMjs */ -}}
-{{- $targetPathMod := .targetPathMod | default .src -}}
+{{- /* add module and iife to file names to show the difference */ -}}
+{{- $targetPathMod := .targetPathMod | default .src  -}}
+{{- $targetPathMjs := strings.TrimRight ".js" $targetPathMod -}}
+{{- $targetPathMjs = printf "%s.module.min.js" $targetPathMjs -}}
+{{- $targetPathMod = .targetPathMod | default $targetPathMjs -}}
+{{- $targetPath := .targetPath | default .src  -}}
+{{- $targetPathIife := strings.TrimRight ".js" $targetPath -}}
+{{- $targetPathIife = printf "%s.iife.min.js" $targetPathIife -}}
+{{- $targetPath := .targetPath | default $targetPathIife -}}
+
 
 {{- /*  supresses errors if no or error .src is supplied */ -}}
 {{- with $src := resources.Get .src -}}
-  {{- /* for develop environment e.g. hugo server */ -}}
+  {{- /* for develop environment e.g. hugo server most es6+ features will be lowered to es6 */ -}}
+  {{- /* https://esbuild.github.io/content-types/#javascript */ -}}
   {{ if eq (hugo.Environment) "development" -}}
-    {{ $src = $src | js.Build (dict "targetPath" $targetPath "sourceMap" "inline") | fingerprint "sha512" -}}
-  {{- /* if .transpile true */ -}}
-    {{ else if $.transpile -}}
-    {{ $src = $src  | js.Build  (dict "targetPath" $targetPath) | babel (dict "noComments" true "minified" true "compact" true "config" "config/babel.config.js" "target" "es5") | fingerprint -}}
-    {{- if eq (or (.transpile (or "es6" "differential") (eq .module true)) -}}
-      {{- if not .module true -}}
-      {{ $mod = $src  | js.Build  (dict "targetPath" $targetPathMod) | babel (dict "noComments" true "minified" true "compact" true "config" "config/babel.module.config.js" "target" "es2015") | fingerprint -}}
-      {{- else -}}
-      {{ $mod = $src  | js.Build  (dict "targetPath" $targetPathMod) | fingerprint -}}
-      {{- end -}}
+    {{ $src = $src | js.Build (dict "targetPath" $targetPath "sourceMap" "inline" "target" "es2015") | fingerprint "sha512" -}}
+  {{ else }}
+  {{- /* else if (ne $.onlyEs5 true) */ -}}
+  {{- /* add option of onlyEs5 = true to set target = es5 */ -}}
+    {{- if (or (eq $.transpile "es6") (eq $.transpile "differential"))  -}}
+      {{- /* create a module file if target is es6 or differential */ -}}
+      {{ $mod := $src | js.Build  (dict "targetPath" $targetPathMod "format" "esm" "target" "es2015") | babel (dict "noComments" true "minified" true "config" "config/babel.module.config.js") |fingerprint -}}
       <script type="module" 
       {{ if eq $.load "async" -}} async {{- end -}}
       src="{{- $mod.RelPermalink -}}"
       integrity="{{- $mod.Data.Integrity -}}">
       </script>
     {{- end -}}
-  {{ else -}}
-    {{- /* esbuild minification has not been used as target of es5 cannot be used (code will be minfied to es6) */ -}}
-    {{ $src = $src  | js.Build (dict "targetPath" $.targetPath "target" "es2015" ) | minify | fingerprint -}}
+    {{ if (ne $.transpile "es6") -}}
+      {{- /* create a iife js file which is es5 compadible */ -}}
+      {{- /* this will not happen if you are only outputting es6 code */ -}}
+      {{- /* esbuild does not support lowering es6 to es5 so its outputted as es6 and then babel lowers to es5 as per browserslist */ -}}
+      {{ $src = $src  | js.Build  (dict "targetPath" $targetPath "target" "es2015") | babel (dict "noComments" true  "minified" true "config" "config/babel.config.js") | fingerprint -}}
+      <script {{ $.load | default "defer" | safeHTMLAttr }}
+        {{ if $mod }} nomodule {{ end }}
+        src="{{- $src.RelPermalink -}}"
+        integrity="{{- $src.Data.Integrity -}}">
+      </script>
+    {{ end }}
   {{ end -}}
-  {{- if not (or (eq .module true) (eq .transpile "es6")) -}}
-  <script {{ $.load | default "defer" | safeHTMLAttr }}
-    {{ if $mod }} nomodule {{ end }}
-    src="{{- $src.RelPermalink -}}"
-    integrity="{{- $src.Data.Integrity -}}">
-  </script>
+  {{- if not (or (eq $.module true) (eq $.transpile "es6")) -}}
+  
   {{- end -}}
 {{- end -}}
